@@ -1,9 +1,9 @@
-"""
+'''
     Author: Bob Hathaway
     Course: CSE 210
     Class: Fall 2022, Section 18
     Assignment: W01 Prove: Developer, Tic-Tac_Toe
-"""
+'''
 import random
 board_array = []
 board_dimension = 3
@@ -42,15 +42,15 @@ def get_players_selection(player):
     valid_selection = False
     while not valid_selection:
         try:
-            players_selection = int(input (f"{player}'s turn to choose a square (1-9): "))
+            players_selection = int(input (f'{player}\'s turn to choose a square (1-9): '))
             if players_selection >=1 and players_selection <= 9:
                 valid_selection = is_selection_available(players_selection)
                 if not valid_selection:
-                    print("That's not an available square. Try again...")
+                    print('That\'s not an available square. Try again...')
             else:
-                print("Oops!  That was not a valid square.  Try again...")
+                print('Oops!  That was not a valid square.  Try again...')
         except:
-            print("That's not a number.  Try again...")
+            print('That\'s not a number.  Try again...')
     return players_selection
 
 def display_board():
@@ -78,25 +78,49 @@ def store_players_selection(current_player, players_selection):
 
 def determine_result_of_play(current_player, players_selection):
     global board_array
+
+    result = ''
     row_value, column_value = determine_row_column_from_selected_value(players_selection)
-    if board_array[row_value][0] and board_array[row_value][1]
+    # check horizontal
+    
+    print(f'{board_array[row_value][0]} {board_array[row_value][1]} {board_array[row_value][2]}') 
+    if (board_array[row_value][0] == board_array[row_value][1]) and (board_array[row_value][2] == board_array[row_value][1]): 
+        result = 'Winner'
+    # check vertical
+    elif (board_array[0][column_value] == board_array[1][column_value]) and (board_array[0][column_value] == board_array[2][column_value]):
+        result = 'Winner'
+    elif (row_value == column_value and column_value == 1) or (board_array[1][1] == current_player): # check the diagnals
+        if (board_array[0][0] == current_player) and (board_array[2][2] == current_player) or \
+             (board_array[0][2] == current_player) and (board_array[2][0] == current_player):
+             result = 'Winner'
+    return result
 
 def main():
     global board_array
+
     game_over = False
+    move_count = 0
     current_player = initialization()
+    display_board()
     while not game_over:
-        display_board()
         players_selection = get_players_selection(current_player)
-        print(players_selection)
         store_players_selection(current_player, players_selection)
-        game_over = determine_result_of_play(current_player, players_selection)
-        if current_player == "X":
-            current_player = "O"
+        move_count += 1
+        result_of_play = determine_result_of_play(current_player, players_selection)
+        display_board()
+        if result_of_play == 'Winner':
+            print(f'Congratulations Player {current_player}, you\'ve won the game!')
+            game_over = True
+        elif move_count == board_dimension ** 2:
+            print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
+            game_over = True
         else:
-            current_player = "X"
-    print (board_array)
+            if current_player == 'X':
+                current_player = 'O'
+            else:
+                current_player = 'X'
+    print()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
