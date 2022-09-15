@@ -95,31 +95,34 @@ def determine_result_of_play(current_player, players_selection):
     return result
 
 def main():
+    play_the_game = True
     global board_array
-
-    game_over = False
-    move_count = 0
-    current_player = initialization()
-    display_board()
-    while not game_over:
-        players_selection = get_players_selection(current_player)
-        store_players_selection(current_player, players_selection)
-        move_count += 1
-        result_of_play = determine_result_of_play(current_player, players_selection)
+    while play_the_game:
+        game_over = False
+        move_count = 0
+        current_player = initialization()
         display_board()
-        if result_of_play == 'Winner':
-            print(f'Congratulations Player {current_player}, you\'ve won the game!')
-            game_over = True
-        elif move_count == board_dimension ** 2:
-            print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
-            game_over = True
-        else:
-            if current_player == 'X':
-                current_player = 'O'
+        while not game_over:
+            players_selection = get_players_selection(current_player)
+            store_players_selection(current_player, players_selection)
+            move_count += 1
+            result_of_play = determine_result_of_play(current_player, players_selection)
+            display_board()
+            if result_of_play == 'Winner':
+                print(f'Congratulations Player {current_player}, you\'ve won the game!')
+                game_over = True
+            elif move_count == board_dimension ** 2:
+                print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
+                game_over = True
             else:
-                current_player = 'X'
-    print()
-
+                if current_player == 'X':
+                    current_player = 'O'
+                else:
+                    current_player = 'X'
+        print()
+        play_the_game = input('Play again (y/n)? ').lower() == 'y'
+        if play_the_game:
+            board_array.clear
 
 if __name__ == '__main__':
     main()
