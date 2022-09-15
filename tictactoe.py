@@ -83,7 +83,6 @@ def determine_result_of_play(current_player, players_selection):
     row_value, column_value = determine_row_column_from_selected_value(players_selection)
     # check horizontal
     
-    print(f'{board_array[row_value][0]} {board_array[row_value][1]} {board_array[row_value][2]}') 
     if (board_array[row_value][0] == board_array[row_value][1]) and (board_array[row_value][2] == board_array[row_value][1]): 
         result = 'Winner'
     # check vertical
