@@ -104,17 +104,6 @@ def main():
         move_count = 0
         current_player = initialization()
         display_board()
-<<<<<<< HEAD
-        if result_of_play == 'Winner':
-            print(f'Congratulations Player of {current_player}\'s, you\'ve won the game!')
-            game_over = True
-        elif move_count == board_dimension ** 2:
-            print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
-            game_over = True
-        else:
-            if current_player == 'X':
-                current_player = 'O'
-=======
         while not game_over:
             players_selection = get_players_selection(current_player)
             store_players_selection(current_player, players_selection)
@@ -127,7 +116,6 @@ def main():
             elif move_count == board_dimension ** 2:
                 print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
                 game_over = True
->>>>>>> 61553045cd989189f910f8fa985dd746fa6105ea
             else:
                 if current_player == 'X':
                     current_player = 'O'
