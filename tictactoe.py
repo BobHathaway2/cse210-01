@@ -111,7 +111,7 @@ def main():
             result_of_play = determine_result_of_play(current_player, players_selection)
             display_board()
             if result_of_play == 'Winner':
-                print(f'Congratulations Player {current_player}, you\'ve won the game!')
+                print(f'Congratulations Player of {current_player}\'s, you\'ve won the game!')
                 game_over = True
             elif move_count == board_dimension ** 2:
                 print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
