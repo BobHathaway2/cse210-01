@@ -83,10 +83,12 @@ def determine_result_of_play(current_player, players_selection):
     row_value, column_value = determine_row_column_from_selected_value(players_selection)
     # check horizontal
     
-    if (board_array[row_value][0] == board_array[row_value][1]) and (board_array[row_value][2] == board_array[row_value][1]): 
+    if (board_array[row_value][0] == board_array[row_value][1]) and \
+        (board_array[row_value][2] == board_array[row_value][1]): 
         result = 'Winner'
     # check vertical
-    elif (board_array[0][column_value] == board_array[1][column_value]) and (board_array[0][column_value] == board_array[2][column_value]):
+    elif (board_array[0][column_value] == board_array[1][column_value]) and \
+        (board_array[0][column_value] == board_array[2][column_value]):
         result = 'Winner'
     elif (row_value == column_value and column_value == 1) or (board_array[1][1] == current_player): # check the diagnals
         if (board_array[0][0] == current_player) and (board_array[2][2] == current_player) or \
@@ -108,7 +110,7 @@ def main():
         result_of_play = determine_result_of_play(current_player, players_selection)
         display_board()
         if result_of_play == 'Winner':
-            print(f'Congratulations Player {current_player}, you\'ve won the game!')
+            print(f'Congratulations Player of {current_player}\'s, you\'ve won the game!')
             game_over = True
         elif move_count == board_dimension ** 2:
             print('The game has ended with no winner - it\'s a draw! Great job to both of you!')
